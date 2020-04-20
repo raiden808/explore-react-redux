@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { add_article } from "../actions/index"
+import { addArticle  } from "../actions/index"
 
 /**
  * Allows current page to use action
