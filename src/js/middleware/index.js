@@ -8,10 +8,16 @@ export function forbiddenWordsMiddleware({ dispatch }) {
       // do your stuff
       if (action.type === ADD_ARTICLE) {
         
+        /**
+         * Loop into title payload and check for forbidden word
+         */
         const foundWord = forbiddenWords.filter(word =>
           action.payload.title.includes(word)
         );
 
+        /**
+         * If found, trigger dispatch.
+         */
         if (foundWord.length) {
           return dispatch({ type: "FOUND_BAD_WORD" });
         }
