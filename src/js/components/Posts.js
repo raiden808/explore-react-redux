@@ -3,23 +3,32 @@ import { connect } from "react-redux";
 import { getData } from "../actions/index";
 
 export class Post extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
+  componentDidMount() {
+    this.props.getData();
+  }
 
-    componentDidMount(){
-        // calling the new action creator
-        this.props.getData();
-    }
+  render() {
+    return (
+      <ul>
+        {this.props.articles.map(el => (
+          <li key={el.id}>{el.title}</li>
+        ))}
+      </ul>
+    );
+  }
+}
 
-    render(){
-        return null;
-    }
-
+function mapStateToProps(state) {
+  return {
+    articles: state.remoteArticles.slice(0, 10)
+  };
 }
 
 export default connect(
-    null,
-    { getData }
-  )(Post);
+  mapStateToProps,
+  { getData }
+)(Post);
